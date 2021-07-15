@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Container from 'react-bootstrap/Container';
 
 import LotteryContract from "./contracts/LotteryContract.json";
 import getWeb3 from "./getWeb3";
@@ -72,40 +76,41 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <div className="App">
+      <Container className="App">
         <h1>Welcome to the Blockchain Casino v0.1!</h1>
         <p>Where decentralized dreams come true.</p>
         <h2>Lottery Smart Contract Example</h2>
-        <button type="button" onClick={this.enterLottery}>Enter Lottery</button>
-        <p>Number of Entries: {this.state.players.length}</p>
+        <Jumbotron>
+          <Button variant="secondary" onClick={this.enterLottery}>Enter Lottery</Button>
+          <p>Number of Entries: {this.state.players.length}</p>
 
-        <div>
-            <table align="center">
-                <thead>
-                <tr>
-                    <th>Addresses</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {
-                        this.state.players.map((player) => (
-                            <tr key={this.uuid.v4()}>
-                                <td>{player}</td>
-                                <td/>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-        </div>
+          <Table striped bordered align="center">
+            <thead>
+              <tr>
+                <th>Addresses in Play</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.state.players.map((player) => (
+                  <tr key={this.uuid.v4()}>
+                    <td>{player}</td>
+                    <td />
+                  </tr>
+                ))
+              }
+            </tbody>
+          </Table>
 
-        <p>Sum in play: {this.state.sumInPlay}</p>
+          <p>Sum Wei in play: {this.state.sumInPlay}</p>
+          <p>Last Winner: {this.state.lastWinner}</p>
+        </Jumbotron>
 
         {this.accounts[0] === this.instanceManager &&
-        <button type="button" onClick={this.pickWinner}>Pick Winner</button>
+          <Button variant="primary" onClick={this.pickWinner}>Pick Winner</Button>
         }
-        <p>Last Winner: {this.state.lastWinner}</p>
-      </div>
+      </Container>
+
     );
   }
 }
