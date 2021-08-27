@@ -60,11 +60,6 @@ contract("Lottery Test", async (accounts) => {
     expect(instance.enter({from: anotherAccount, value: web3.utils.toWei((parseInt(process.env.INITIAL_STAKE) - 10).toString(), "wei")})).to.be.rejected;
   });
 
-  it('doesn\'t allow entries with more amount paid', async () => {
-    let instance = this.myLottery;
-    expect(instance.enter({from: anotherAccount, value: web3.utils.toWei((parseInt(process.env.INITIAL_STAKE) + 10).toString(), "wei")})).to.be.rejected;
-  });
-
   it('only manager can pick the winner', async () => {
     let instance = this.myLottery;
     expect(instance.pickWinner({from: someAccount})).to.be.rejected;
