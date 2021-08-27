@@ -14,7 +14,6 @@
 - install [nodejs](https://nodejs.org/en/) with/and npm
 -  `npm i -g truffle`
 - install [ganache](https://www.trufflesuite.com/ganache)
-  
 
 Replace the '**MNEMONIC**' in `env.example` and rename it to `.env`
 
@@ -23,15 +22,11 @@ For **Metamask**:
 - Generate accounts with the same '**MNEMONIC**'
 - Add a new network and connect it to Ganache (port: 7545)
 
-  
-
 ## Migrate on Blockchain:
     
     npm install
     truffle migrate --network ganache_local
     truffle test --network ganache_local // if you want to run the tests
-
-  
 
 ## Run the Front-End React App:
 
